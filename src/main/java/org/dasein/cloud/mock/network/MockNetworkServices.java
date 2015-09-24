@@ -38,6 +38,7 @@ public class MockNetworkServices extends AbstractNetworkServices {
     private MockCloud provider;
 
     public MockNetworkServices(MockCloud provider) {
+        super(provider);
         this.provider = provider;
     }
 
