@@ -1,6 +1,7 @@
 - providerTermForIpAddress: "IP Address"
 - vlanForVlanIPRequirement: NONE
 - vlanForIPRequirement: NONE
+- vmForPortForwarding: NONE
 - isAssigned: true
 - canBeAssigned: true
 - isAssignablePostLaunch: true

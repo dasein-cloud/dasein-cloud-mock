@@ -11,8 +11,10 @@
 - supportsDirectImageUpload: false
 - supportsImageCapture: {VOLUME: true}
 - supportsImageCopy: false
+- supportsImageRemoval: true
 - supportsImageSharing: false
 - supportsImageSharingWithPublic: false
 - supportsListingAllRegions: false
 - supportsPublicLibrary: {MACHINE: true}
 - imageCaptureDestroysVM: false
+- imageNamingConstraints:

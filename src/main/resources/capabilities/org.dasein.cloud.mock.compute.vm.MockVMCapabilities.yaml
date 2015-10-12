@@ -16,6 +16,7 @@
 - virtualMachineNamingConstraints:
 - virtualMachineVisibleScope:
 - virtualMachineProductVisibleScope:
+- virtualMachineReservedUsernames:
 
 - dataCenterLaunchRequirement:
 - imageRequirement: {MACHINE: REQUIRED}
@@ -30,6 +31,7 @@
 - isExtendedAnalyticsSupported: false
 - isUserDataSupported: true
 - isUserDefinedPrivateIPSupported: false
+- isRootPasswordSSHKeyEncrypted: false
 - supportedArchitectures: [I64]
 - supportsSpotVirtualMachines: false
 - supportsClientRequestToken: false
