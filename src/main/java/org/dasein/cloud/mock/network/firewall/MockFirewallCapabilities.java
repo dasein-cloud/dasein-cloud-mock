@@ -21,6 +21,7 @@ import org.dasein.cloud.*;
 import org.dasein.cloud.mock.MockCloud;
 import org.dasein.cloud.mock.AbstractMockCapabilities;
 import org.dasein.cloud.network.*;
+import org.dasein.cloud.util.NamingConstraints;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -47,6 +48,7 @@ public class MockFirewallCapabilities extends AbstractMockCapabilities implement
     private Requirement requiresVLAN;
     private Map<Boolean, Boolean> supportsFirewallCreation;
     private boolean supportsFirewallDeletion;
+    private NamingConstraints firewallNamingConstraints;
 
     public MockFirewallCapabilities(@Nonnull MockCloud provider) {
         super(provider);
@@ -94,6 +96,13 @@ public class MockFirewallCapabilities extends AbstractMockCapabilities implement
 
     @Nonnull
     @Override
+    public Iterable<RuleTargetType> listSupportedDestinationTypes(boolean inVlan, Direction direction)
+            throws InternalException, CloudException {
+        return listSupportedDestinationTypes(inVlan);
+    }
+
+    @Nonnull
+    @Override
     public Iterable<Direction> listSupportedDirections(boolean inVlan) throws InternalException, CloudException {
         if(null != supportedDirections)
             return supportedDirections.get(inVlan);
@@ -124,6 +133,13 @@ public class MockFirewallCapabilities extends AbstractMockCapabilities implement
         return null;
     }
 
+    @Nonnull
+    @Override
+    public Iterable<RuleTargetType> listSupportedSourceTypes(boolean inVlan, Direction direction)
+            throws InternalException, CloudException {
+        return listSupportedSourceTypes(inVlan);
+    }
+
     @Override
     public boolean requiresRulesOnCreation() throws CloudException, InternalException {
         return requiresRulesOnCreation;
@@ -137,7 +153,6 @@ public class MockFirewallCapabilities extends AbstractMockCapabilities implement
 
     @Override
     public boolean supportsRules(@Nonnull Direction direction, @Nonnull Permission permission, boolean inVlan) throws CloudException, InternalException {
-        //TODO
         return (!inVlan && permission.equals(Permission.ALLOW));
     }
 
@@ -153,17 +168,10 @@ public class MockFirewallCapabilities extends AbstractMockCapabilities implement
         return supportsFirewallDeletion;
     }
 
+    @Nonnull
     @Override
-    public Iterable<RuleTargetType> listSupportedDestinationTypes(boolean inVlan, Direction direction)
-            throws InternalException, CloudException {
-        //TODO
-        return Collections.emptyList();
+    public NamingConstraints getFirewallNamingConstraints() throws CloudException, InternalException {
+        return firewallNamingConstraints;
     }
 
-    @Override
-    public Iterable<RuleTargetType> listSupportedSourceTypes(boolean inVlan, Direction direction)
-            throws InternalException, CloudException {
-        //TODO
-        return Collections.emptyList();
-    }
 }

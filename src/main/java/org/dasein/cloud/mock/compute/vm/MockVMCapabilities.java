@@ -56,6 +56,7 @@ public class MockVMCapabilities extends AbstractMockCapabilities implements Virt
     private NamingConstraints virtualMachineNamingConstraints;
     private VisibleScope virtualMachineVisibleScope;
     private VisibleScope virtualMachineProductVisibleScope;
+    private String[] virtualMachineReservedUsernames;
     private Requirement dataCenterLaunchRequirement;
     private Map<ImageClass, Requirement> imageRequirement;
     private Map<Platform, Requirement> passwordRequirement;
@@ -71,6 +72,7 @@ public class MockVMCapabilities extends AbstractMockCapabilities implements Virt
     private boolean isExtendedAnalyticsSupported;
     private boolean isUserDataSupported;
     private boolean isUserDefinedPrivateIPSupported;
+    private boolean isRootPasswordSSHKeyEncrypted;
     private boolean supportsSpotVirtualMachines;
     private boolean supportsClientRequestToken;
     private boolean supportsCloudStoredShellKey;
@@ -204,6 +206,12 @@ public class MockVMCapabilities extends AbstractMockCapabilities implements Virt
         return virtualMachineProductVisibleScope;
     }
 
+    @Nullable
+    @Override
+    public String[] getVirtualMachineReservedUsernames() {
+        return virtualMachineReservedUsernames;
+    }
+
     @Nonnull
     @Override
     public Requirement identifyDataCenterLaunchRequirement() throws CloudException, InternalException {
@@ -289,6 +297,11 @@ public class MockVMCapabilities extends AbstractMockCapabilities implements Virt
     @Override
     public boolean isUserDefinedPrivateIPSupported() throws CloudException, InternalException {
         return isUserDefinedPrivateIPSupported;
+    }
+
+    @Override
+    public boolean isRootPasswordSSHKeyEncrypted() throws CloudException, InternalException {
+        return isRootPasswordSSHKeyEncrypted;
     }
 
     @Nonnull

@@ -25,6 +25,7 @@ import org.dasein.cloud.*;
 import org.dasein.cloud.compute.*;
 import org.dasein.cloud.mock.AbstractMockCapabilities;
 import org.dasein.cloud.mock.MockCloud;
+import org.dasein.cloud.util.NamingConstraints;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -54,11 +55,13 @@ public class MockImageCapabilities extends AbstractMockCapabilities implements I
     private boolean supportsDirectImageUpload;
     private Map<MachineImageType, Boolean> supportsImageCapture;
     private boolean supportsImageCopy;
+    private boolean supportsImageRemoval;
     private boolean supportsImageSharing;
     private boolean supportsImageSharingWithPublic;
     private boolean supportsListingAllRegions;
     private Map<ImageClass, Boolean> supportsPublicLibrary;
     private boolean imageCaptureDestroysVM;
+    private NamingConstraints imageNamingConstraints;
 
     public MockImageCapabilities(@Nonnull MockCloud provider) {
         super(provider);
@@ -153,6 +156,11 @@ public class MockImageCapabilities extends AbstractMockCapabilities implements I
     }
 
     @Override
+    public boolean supportsImageRemoval() throws CloudException, InternalException {
+        return supportsImageRemoval;
+    }
+
+    @Override
     public boolean supportsImageSharing() throws CloudException, InternalException {
         return supportsImageSharing;
     }
@@ -178,5 +186,11 @@ public class MockImageCapabilities extends AbstractMockCapabilities implements I
     @Override
     public boolean imageCaptureDestroysVM() throws CloudException, InternalException {
         return imageCaptureDestroysVM;
+    }
+
+    @Nonnull
+    @Override
+    public NamingConstraints getImageNamingConstraints() throws CloudException, InternalException {
+        return imageNamingConstraints;
     }
 }

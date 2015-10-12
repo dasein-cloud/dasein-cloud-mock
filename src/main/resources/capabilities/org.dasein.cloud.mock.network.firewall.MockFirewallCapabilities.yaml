@@ -11,3 +11,4 @@
 - requiresVLAN: NONE
 - supportsFirewallCreation: {true: false, false: true}
 - supportsFirewallDeletion: true
+- firewallNamingConstraints:

@@ -9,6 +9,7 @@ import org.dasein.cloud.mock.MockCloud;
 import org.dasein.cloud.network.IPAddressCapabilities;
 import org.dasein.cloud.network.IPVersion;
 
+import javax.annotation.Nonnull;
 import java.util.Locale;
 
 public class MockIPCapabilities extends AbstractMockCapabilities implements IPAddressCapabilities {
@@ -16,6 +17,7 @@ public class MockIPCapabilities extends AbstractMockCapabilities implements IPAd
     private String providerTermForIpAddress;
     private Requirement vlanForVlanIPRequirement;
     private Requirement vlanForIPRequirement;
+	private Requirement vmForPortForwarding;
     private boolean isAssigned;
     private boolean canBeAssigned;
     private boolean isAssignablePostLaunch;
@@ -43,6 +45,12 @@ public class MockIPCapabilities extends AbstractMockCapabilities implements IPAd
 	public Requirement identifyVlanForIPRequirement() throws CloudException,
 			InternalException {
 		return vlanForIPRequirement;
+	}
+
+	@Nonnull
+	@Override
+	public Requirement identifyVMForPortForwarding() throws CloudException, InternalException {
+		return vmForPortForwarding;
 	}
 
 	@Override
